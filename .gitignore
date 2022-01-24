@@ -17,3 +17,5 @@ log/*
 *.vim*
 *pbm*
 *.out
+.idea
+v-env
