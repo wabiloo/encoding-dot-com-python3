@@ -6,6 +6,7 @@ import lxml.etree
 from encodingapi import constants
 from encodingapi.request import base
 
+
 class XmlRequest(base.EncodingRequest):
 
     def __init__(self):
@@ -29,12 +30,12 @@ class XmlRequest(base.EncodingRequest):
 
         return self.build(data=data)
 
-    def build(self, 
+    def build(self,
               data=None):
-        
+
         if data is not None:
 
-            for k,v in data.items():
+            for k, v in data.items():
                 if isinstance(v, list):
                     for item in v:
                         element = lxml.etree.Element(k)
@@ -52,10 +53,9 @@ class XmlRequest(base.EncodingRequest):
                value=None):
 
         if all([
-               name is not None,
-               value is not None,
-               ]):
-
+            name is not None,
+            value is not None,
+        ]):
             new_node = lxml.etree.Element(name)
             new_node.text = value
             self.request.append(new_node)
@@ -68,4 +68,4 @@ class XmlRequest(base.EncodingRequest):
         if source is not None:
             result = lxml.etree.fromstring(source)
 
-        return result 
+        return result

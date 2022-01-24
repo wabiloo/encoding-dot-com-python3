@@ -2,9 +2,10 @@
 
 from encodingapi import constants
 from encodingapi.request import (
-                              xml_request,
-                              json_request
-                             )
+    xml_request,
+    json_request
+)
+
 
 class EncodingRequestBuilder(object):
 
@@ -13,9 +14,8 @@ class EncodingRequestBuilder(object):
 
         self.__request_format_to_use = encoding_format
 
-
     def build_request_object(self):
-        
+
         request_class = None
         request_object = None
 
@@ -26,7 +26,7 @@ class EncodingRequestBuilder(object):
 
         elif self.__request_format_to_use == constants.ENCODING_API_JSON_REQUEST_FORMAT:
 
-            request_class = json_request.JsonRequest 
+            request_class = json_request.JsonRequest
             request_object = request_class()
 
-        return (request_object, request_class)
+        return request_object, request_class

@@ -35,7 +35,7 @@ class JsonRequest(base.EncodingRequest):
 
         if data is not None:
 
-            for k,v in data.items():
+            for k, v in data.items():
                     self.request[constants.ENCODING_API_REQUEST_TYPE][k] = v
 
         return self.request

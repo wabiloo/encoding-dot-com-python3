@@ -22,12 +22,12 @@ understood by the encoding.com api
 
 """
 
+
 class EncodingDotComConnection(object):
 
     def __init__(self,
                  user_id=None,
                  user_key=None):
-
         self._user_id = user_id
         self._user_key = user_key
         self.host_name = constants.ENCODING_API_HOSTNAME
@@ -38,9 +38,8 @@ class EncodingDotComConnection(object):
     def __construct_url_string(self,
                                host_name=None,
                                host_port=None):
-
-        self.__api_url =  utils.build_api_url(host_name=host_name,
-                                              host_port=host_port)
+        self.__api_url = utils.build_api_url(host_name=host_name,
+                                             host_port=host_port)
 
     @property
     def user_id(self):

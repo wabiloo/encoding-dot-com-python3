@@ -1,21 +1,21 @@
 #!/usr/bin/env python
-from pkgutil import extend_path                                                                                                                                                  
-__path__ = extend_path(__path__, __name__)
+from pkgutil import extend_path
 
-import httplib
-import urllib
-import pprint
-import requests
+# __path__ = extend_path(__path__, __name__)
 
-from encodingapi import connection
-from encodingapi import constants
-from encodingapi.request import builder
+import http.client
+from urllib.parse import urlencode
+
+from .connection import EncodingDotComConnection
+from .constants import *
+from .request import builder
+
 
 class Encoding(object):
-    
-    def __init__(self, 
-                 user_id=None, 
-                 user_key=None, 
+
+    def __init__(self,
+                 user_id=None,
+                 user_key=None,
                  request_format=constants.ENCODING_API_XML_REQUEST_FORMAT):
 
         self.encoding_api_connection = connection.EncodingDotComConnection(user_id=user_id,
@@ -33,109 +33,106 @@ class Encoding(object):
     def format(self):
         return self.request_format
 
-        
-    def get_user_info(self, 
-                       action='GetUserInfo', 
-                       headers=constants.ENCODING_API_HEADERS):
+    def get_user_info(self,
+                      action='GetUserInfo',
+                      headers=constants.ENCODING_API_HEADERS):
 
         result = None
 
-        nodes = {   'userid':self.user_id,
-                    'userkey':self.user_key,
-                    'action':action,
-                    'action_user_id':self.user_id,
-                    }
+        nodes = {'userid': self.user_id,
+                 'userkey': self.user_key,
+                 'action': action,
+                 'action_user_id': self.user_id,
+                 }
 
         if self.request_object is not None:
 
-            self.request_object.build(nodes) 
-        
-            results = self._execute_request(request_obj=self.request_object, 
-                                            headers=headers)
-            if results is not None: 
-                result = self.request_class.parse(results)
+            self.request_object.build(nodes)
 
-        return result
-
-    def get_media_info(self, 
-                       action='GetMediaInfo', 
-                       ids=None, 
-                       headers=constants.ENCODING_API_HEADERS):
-
-
-        result = None
-
-        nodes = {   'userid':self.user_id,
-                    'userkey':self.user_key,
-                    'action':action,
-                    'mediaid':','.join(ids),
-                    }
-
-        if self.request_object is not None:
-
-            self.request_object.build(nodes) 
-        
-            results = self._execute_request(request_obj=self.request_object, 
-                                            headers=headers)
-            if results is not None: 
-                result = self.request_class.parse(results)
-
-        return result
-
-    def get_status(self, 
-                   action='GetStatus', 
-                   ids=None, 
-                   extended='no', 
-                   headers=constants.ENCODING_API_HEADERS):
-
-        result = None
-
-        nodes = {   'userid':self.user_id,
-                    'userkey':self.user_key,
-                    'action':action,
-                    'extended':extended,
-                    'mediaid':','.join(ids),
-                    }
-
-        if self.request_object is not None:
-
-            self.request_object.build(nodes) 
-        
-            results = self._execute_request(request_obj=self.request_object, 
+            results = self._execute_request(request_obj=self.request_object,
                                             headers=headers)
             if results is not None:
                 result = self.request_class.parse(results)
 
         return result
 
-    def add_media(self, 
-                  action='AddMedia', 
-                  source=None, 
-                  notify='', 
+    def get_media_info(self,
+                       action='GetMediaInfo',
+                       ids=None,
+                       headers=constants.ENCODING_API_HEADERS):
+
+        result = None
+
+        nodes = {'userid': self.user_id,
+                 'userkey': self.user_key,
+                 'action': action,
+                 'mediaid': ','.join(ids),
+                 }
+
+        if self.request_object is not None:
+
+            self.request_object.build(nodes)
+
+            results = self._execute_request(request_obj=self.request_object,
+                                            headers=headers)
+            if results is not None:
+                result = self.request_class.parse(results)
+
+        return result
+
+    def get_status(self,
+                   action='GetStatus',
+                   ids=None,
+                   extended='no',
+                   headers=constants.ENCODING_API_HEADERS):
+
+        result = None
+
+        nodes = {'userid': self.user_id,
+                 'userkey': self.user_key,
+                 'action': action,
+                 'extended': extended,
+                 'mediaid': ','.join(ids),
+                 }
+
+        if self.request_object is not None:
+
+            self.request_object.build(nodes)
+
+            results = self._execute_request(request_obj=self.request_object,
+                                            headers=headers)
+            if results is not None:
+                result = self.request_class.parse(results)
+
+        return result
+
+    def add_media(self,
+                  action='AddMedia',
+                  source=None,
+                  notify='',
                   formats=None,
-                  instant='no', 
+                  instant='no',
                   headers=constants.ENCODING_API_HEADERS):
 
         result = None
 
-        nodes = {   'userid':self.user_id,
-                    'userkey':self.user_key,
-                    'action':action,
-                    'source':source,
-                    'notify':notify,
-                    'instant':instant,
-                    }
+        nodes = {'userid': self.user_id,
+                 'userkey': self.user_key,
+                 'action': action,
+                 'source': source,
+                 'notify': notify,
+                 'instant': instant,
+                 }
 
         if self.request_object is not None:
 
-            self.request_object.build(nodes) 
-        
-            for format_entry in formats:
+            self.request_object.build(nodes)
 
+            for format_entry in formats:
                 self.request_object.append('format',
                                            format_entry)
 
-            results = self._execute_request(request_obj=self.request_object, 
+            results = self._execute_request(request_obj=self.request_object,
                                             headers=headers)
             if results is not None:
                 result = self.request_class.parse(results)
@@ -149,36 +146,34 @@ class Encoding(object):
 
         if self.request_object is not None:
 
-            self.request_object.build(transcode_job) 
-        
-            results = self._execute_request(request_obj=self.request_object, 
+            self.request_object.build(transcode_job)
+
+            results = self._execute_request(request_obj=self.request_object,
                                             headers=headers)
             if results is not None:
                 result = self.request_class.parse(results)
 
         return result
 
-    def _execute_request(self, 
+    def _execute_request(self,
                          method='POST',
                          path='',
-                         request_obj=None, 
+                         request_obj=None,
                          headers=None):
         data = None
 
         if all([
-                path is not None,
-                headers is not None,
-                request_obj is not None,
-               ]):
+            path is not None,
+            headers is not None,
+            request_obj is not None,
+        ]):
             request_params = {}
             request_params[request_obj.request_type] = request_obj.raw_form
-            params = urllib.urlencode(request_params)
-            conn = httplib.HTTPConnection(self.url)
+            params = urlencode(request_params)
+            conn = http.client.HTTPConnection(self.url)
             conn.request(method, path, params, headers)
             response = conn.getresponse()
             data = response.read()
             conn.close()
 
         return data
-
-
