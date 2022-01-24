@@ -69,3 +69,4 @@ class XmlRequest(base.EncodingRequest):
             result = lxml.etree.fromstring(source)
 
         return result
+

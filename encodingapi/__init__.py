@@ -170,8 +170,10 @@ class Encoding(object):
             request_params = {}
             request_params[request_obj.request_type] = request_obj.raw_form
             params = urlencode(request_params)
+
             conn = http.client.HTTPConnection(self.url)
             conn.request(method, path, params, headers)
+
             response = conn.getresponse()
             data = response.read()
             conn.close()

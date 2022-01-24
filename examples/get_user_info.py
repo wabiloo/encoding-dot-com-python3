@@ -15,13 +15,10 @@ if __name__ == '__main__':
     print('User info results:')
 
     if encoding_instance.format == 'json':
-
         pprint.pprint(result)
 
     elif encoding_instance.format == 'xml':
-        import lxml
         from lxml import etree
-
         pprint.pprint(etree.tostring(result))
 
     else:
