@@ -12,8 +12,8 @@ def read(fname):
 
 setup(
     name="encoding_dot_com-encodingapi",
-    version="0.0.1",
-    description=("Encoding.dom Python API"),
+    version="0.1.0",
+    description=("Encoding.com Python3 API"),
     license="",
     keywords="encoding.com transcoding",
     url="",
@@ -28,6 +28,6 @@ setup(
         "Environment :: No Input/Output (Daemon)",
         "Natural Language :: English",
         "Operating System :: POSIX",
-        "Programming Language :: Python :: 2.7"
+        "Programming Language :: Python :: 3.7"
     ],
 )
