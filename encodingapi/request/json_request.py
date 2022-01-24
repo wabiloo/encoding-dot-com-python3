@@ -4,6 +4,7 @@ import json
 
 from encodingapi import constants
 from encodingapi.request import base
+from encodingapi.exceptions import ResponseErrorException
 
 
 class JsonRequest(base.EncodingRequest):
@@ -59,8 +60,11 @@ class JsonRequest(base.EncodingRequest):
         if source is not None:
             result = json.loads(source)
 
-        if result is not None and 'response' in result:
-            return result['response']
+            if result is not None and 'response' in result:
+                result = result['response']
+
+                if 'errors' in result:
+                    raise ResponseErrorException(result['errors']['error'])
 
         return result
 

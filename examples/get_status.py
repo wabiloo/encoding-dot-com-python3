@@ -18,10 +18,9 @@ if __name__ == '__main__':
         pprint.pprint(result)
 
     elif encoding_instance.format == 'xml':
-        import lxml
         from lxml import etree
 
-        pprint.pprint(etree.tostring(result))
+        print(etree.tostring(result, pretty_print=True, encoding='unicode'))
 
     else:
         print('Skipping attempt to render non-registered request format')

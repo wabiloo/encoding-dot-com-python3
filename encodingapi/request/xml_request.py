@@ -3,7 +3,7 @@
 import lxml
 import lxml.etree
 
-from encodingapi import constants
+from encodingapi import constants, ResponseErrorException
 from encodingapi.request import base
 
 
@@ -67,6 +67,11 @@ class XmlRequest(base.EncodingRequest):
 
         if source is not None:
             result = lxml.etree.fromstring(source)
+
+            if result is not None and result.find('errors'):
+                raise ResponseErrorException(
+                    result.find('errors').find('error').text
+                )
 
         return result
 
