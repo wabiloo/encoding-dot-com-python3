@@ -12,8 +12,8 @@ def read(fname):
 
 setup(
     name="encoding_dot_com-encodingapi",
-    version="0.1.2",
-    description=("Encoding.com Python3 API"),
+    version="0.2.0",
+    description="Encoding.com Python3 API",
     license="",
     keywords="encoding.com transcoding",
     url="",
@@ -21,10 +21,10 @@ setup(
         exclude=["*.tests", "*.tests.*", "tests.*", "tests", "*.examples", "example*"]),
     long_description=read('README.md'),
     install_requires=[
-        "requests", "lxml"
+        "requests", "lxml", "urllib3"
     ],
     classifiers=[
-        "Development Status :: 3 - Alpha",
+        "Development Status :: 4 - Beta",
         "Environment :: No Input/Output (Daemon)",
         "Natural Language :: English",
         "Operating System :: POSIX",
