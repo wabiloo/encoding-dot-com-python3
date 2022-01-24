@@ -8,6 +8,7 @@ from urllib.parse import urlencode
 
 from .connection import EncodingDotComConnection
 from .constants import *
+from .exceptions import *
 from .request import builder
 
 
@@ -176,6 +177,10 @@ class Encoding(object):
 
             response = conn.getresponse()
             data = response.read()
+            http_status = response.status
             conn.close()
+
+            if http_status == 421:
+                raise RateLimitException
 
         return data
