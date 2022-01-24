@@ -12,7 +12,7 @@ def read(fname):
 
 setup(
     name="encoding_dot_com-encodingapi",
-    version="0.1.0",
+    version="0.1.1",
     description=("Encoding.com Python3 API"),
     license="",
     keywords="encoding.com transcoding",
@@ -21,7 +21,7 @@ setup(
         exclude=["*.tests", "*.tests.*", "tests.*", "tests", "*.examples", "example*"]),
     long_description=read('README.md'),
     install_requires=[
-        "requests",
+        "requests", "lxml"
     ],
     classifiers=[
         "Development Status :: 3 - Alpha",
