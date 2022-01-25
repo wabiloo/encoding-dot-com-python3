@@ -113,6 +113,7 @@ class Encoding(object):
                   notify='',
                   formats=None,
                   instant='no',
+                  metadata=None,
                   headers=constants.ENCODING_API_HEADERS):
 
         result = None
@@ -123,15 +124,15 @@ class Encoding(object):
                  'source': source,
                  'notify': notify,
                  'instant': instant,
+                 'format': formats,
                  }
+
+        if metadata:
+            nodes['meta'] = metadata
 
         if self.request_object is not None:
 
             self.request_object.build(nodes)
-
-            for format_entry in formats:
-                self.request_object.append('format',
-                                           format_entry)
 
             results = self._execute_request(request_obj=self.request_object,
                                             headers=headers)

@@ -7,7 +7,7 @@ import pprint
 import encodingapi
 
 if __name__ == '__main__':
-    r_format = 'json'
+    r_format = encodingapi.ENCODING_API_JSON_REQUEST_FORMAT
 
     # for this example, you need to have a fully constructed
     # json-encoded transcoding job for an asset that you want

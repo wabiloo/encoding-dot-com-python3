@@ -12,8 +12,8 @@ if __name__ == '__main__':
     )
     print('Grabbing media status')
     result = encoding_instance.get_status(ids=[os.getenv('MEDIA_ID')])
-    print('Media status results:')
 
+    print('Media status results:')
     if encoding_instance.format == 'json':
         pprint.pprint(result)
 
