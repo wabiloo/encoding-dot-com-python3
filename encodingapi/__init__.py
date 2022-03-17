@@ -112,7 +112,7 @@ class Encoding(object):
                   source=None,
                   notify='',
                   formats=None,
-                  instant='no',
+                  ludicrous_mode='no',
                   metadata=None,
                   headers=constants.ENCODING_API_HEADERS):
 
@@ -123,7 +123,7 @@ class Encoding(object):
                  'action': action,
                  'source': source,
                  'notify': notify,
-                 'instant': instant,
+                 'ludicrous_mode': ludicrous_mode,
                  'format': formats,
                  }
 
