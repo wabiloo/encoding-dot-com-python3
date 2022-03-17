@@ -4,10 +4,10 @@ import json
 from xml import etree
 
 import pprint
-import encodingapi
+import encodingdotcom_api as api
 
 if __name__ == '__main__':
-    r_format = encodingapi.ENCODING_API_JSON_REQUEST_FORMAT
+    r_format = api.ENCODING_API_JSON_REQUEST_FORMAT
 
     # for this example, you need to have a fully constructed
     # json-encoded transcoding job for an asset that you want
@@ -16,7 +16,7 @@ if __name__ == '__main__':
 
     if os.path.exists('./transcoding_job_json_dump.json'):
 
-        encoding_instance = encodingapi.Encoding(
+        encoding_instance = api.Encoding(
             user_id=os.getenv('ENCODING_API_USER_ID', None),
             user_key=os.getenv('ENCODING_API_USER_KEY', None),
             request_format=r_format

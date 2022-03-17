@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-from encodingapi import constants
+from encodingdotcom_api import constants
 
 def build_api_url(host_name=None,
                   host_port=None):

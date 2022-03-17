@@ -3,8 +3,8 @@
 import lxml
 import lxml.etree
 
-from encodingapi import constants, ResponseErrorException
-from encodingapi.request import base
+from encodingdotcom_api import constants, ResponseErrorException
+from encodingdotcom_api.request import base
 
 
 class XmlRequest(base.EncodingRequest):

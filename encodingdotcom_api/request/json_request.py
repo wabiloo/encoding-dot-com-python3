@@ -2,9 +2,9 @@
 
 import json
 
-from encodingapi import constants
-from encodingapi.request import base
-from encodingapi.exceptions import ResponseErrorException
+from encodingdotcom_api import constants
+from encodingdotcom_api.request import base
+from encodingdotcom_api.exceptions import ResponseErrorException
 
 
 class JsonRequest(base.EncodingRequest):

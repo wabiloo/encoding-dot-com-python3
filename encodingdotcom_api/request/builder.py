@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
-from encodingapi import constants
-from encodingapi.request import (
+from encodingdotcom_api import constants
+from encodingdotcom_api.request import (
     xml_request,
     json_request
 )

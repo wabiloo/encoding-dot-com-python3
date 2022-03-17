@@ -8,14 +8,14 @@ Example usage:
 
     import os
     import pprint
-    import encodingapi
+    import import encodingdotcom_api as api
     import lxml
     from lxml import etree
             
-    encoding_instance = encodingapi.Encoding(
-                                             user_id=os.getenv('ENCODING_API_USER_ID',None),
-                                             user_key=os.getenv('ENCODING_API_USER_KEY',None),
-                                            )
+    encoding_instance = api.Encoding(
+       user_id=os.getenv('ENCODING_API_USER_ID',None),
+       user_key=os.getenv('ENCODING_API_USER_KEY',None),
+    )
 
     result = encoding_instance.get_user_info()
 

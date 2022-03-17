@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
-from encodingapi import constants
-from encodingapi import utils
+from encodingdotcom_api import constants
+from encodingdotcom_api import utils
 
 """
 The encoding.com api relies on the user providing the following:
