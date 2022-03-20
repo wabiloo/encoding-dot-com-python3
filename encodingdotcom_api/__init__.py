@@ -113,6 +113,7 @@ class Encoding(object):
                   notify='',
                   formats=None,
                   ludicrous_mode='no',
+                  region="us-east-1",
                   metadata=None,
                   headers=constants.ENCODING_API_HEADERS):
 
@@ -124,6 +125,7 @@ class Encoding(object):
                  'source': source,
                  'notify': notify,
                  'ludicrous_mode': ludicrous_mode,
+                 'region': region,
                  'format': formats,
                  }
 

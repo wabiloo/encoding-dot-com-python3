@@ -12,7 +12,7 @@ def read(fname):
 
 setup(
     name="encodingdotcom_api",
-    version="0.5.0",
+    version="0.6.0",
     description="Encoding.com Python3 API",
     license="",
     keywords="encoding.com transcoding",
